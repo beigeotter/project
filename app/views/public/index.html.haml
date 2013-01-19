@@ -23,5 +23,12 @@
       %h3 Tags
       %ul.tag_list
         - @tags.each do |tag|
-          %li{ :id => "tag-#{tag.id}", :class => 'click-tag' }= tag.name
+          %li{ :id => tag.id, :class => 'click-tag' }= tag.name
+
+
+    .recommend_me
+      = link_to 'Recommend Me', '#', :class => 'recommend_me'
+
+  .recommended{ :style => 'display: none;' }
+
 

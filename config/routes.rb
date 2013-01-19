@@ -1,7 +1,10 @@
 Project::Application.routes.draw do
+  match '/activities/search' => 'activities#search'
   resources :activities
 
+
   root :to => 'public#index'
+  
 
 
   # The priority is based upon order of creation:

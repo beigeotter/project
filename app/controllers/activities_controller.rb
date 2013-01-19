@@ -1,9 +1,4 @@
 class ActivitiesController < ApplicationController
-  def new
-
-    @activity = Activity.new
-
-  end
 
   def create
     @activity = Activity.new(params[:activity])
@@ -30,5 +25,12 @@ class ActivitiesController < ApplicationController
     render 'thanks'
 
   end
+  
+  def search
+    tag_indexes = params[:tags].split(',')
+    @activity = Activity.all(:include => :tags, :conditions => ["activities_tags.tag_id in (?)", tag_indexes]).first
+    render :json => { :description => @activity.description }
+  end
+  
 
 end

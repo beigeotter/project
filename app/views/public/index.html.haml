@@ -1,21 +1,27 @@
-%h1 Diversions
+.public
+  %h1 Diversions
 
-.what_to_do
-  %h2 What would you like to do?
-  = link_to 'Recommend something for me', '#', :class => 'recommend_activity'
-  = link_to 'Add an activity', '#', :class => 'add_activity'
-
-
-.recommend_me_something{ :style => 'display: none;' }
-  %h2 We recommend you..
-
-.add_an_activity{ :style => 'display: none;'}
-  %p Add an Activity!
-  = simple_form_for Activity.new do |f|
-    = f.text_field :description
-    = f.text_field :add_tags
-    = f.submit
+  .what_to_do
+    %h2 What would you like to do?
+    = link_to 'Recommend something for me', '#', :class => 'recommend_activity'
+    = link_to 'Add an activity', '#', :class => 'add_activity'
 
 
-- @activities.each do |activity|
-  %p= activity.description
+
+
+  .add_an_activity{ :style => 'display: none;'}
+    %p Add an Activity!
+    = simple_form_for Activity.new do |f|
+      = f.text_field :description, :placeholder => 'Activity?'
+      = f.text_field :add_tags, :placeholder => 'Tags, tags, tags!'
+      = f.submit
+
+  .recommend_me_something{ :style => 'display: none;' }
+    %h2 We recommend you..
+
+    .tags
+      %h3 Tags
+      %ul.tag_list
+        - @tags.each do |tag|
+          %li{ :id => "tag-#{tag.id}", :class => 'click-tag' }= tag.name
+
